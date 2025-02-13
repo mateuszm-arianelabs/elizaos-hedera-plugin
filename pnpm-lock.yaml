@@ -10,19 +10,23 @@ importers:
     dependencies:
       '@elizaos/core':
         specifier: 0.25.6-alpha.1
-        version: 0.25.6-alpha.1(@google-cloud/vertexai@1.9.3)(@langchain/core@0.3.39(openai@4.82.0(zod@3.24.2)))(axios@1.7.9)(react@19.0.0)(zod@3.24.2)
+        version: 0.25.6-alpha.1(@google-cloud/vertexai@1.9.3)(@langchain/core@0.3.40(openai@4.82.0(zod@3.24.2)))(axios@1.7.9)(react@19.0.0)(zod@3.24.2)
       '@hashgraph/sdk':
         specifier: ^2.56.0
         version: 2.58.0
       hedera-agent-kit:
         specifier: github:mateuszm-arianelabs/hedera-agent-kit#develop
-        version: https://codeload.github.com/mateuszm-arianelabs/hedera-agent-kit/tar.gz/e4779badb6b67bc17ae644a53e200e9ad23cac5b(openai@4.82.0(zod@3.24.2))
+        version: https://codeload.github.com/mateuszm-arianelabs/hedera-agent-kit/tar.gz/69fe723d99aa8849af061f7d1764e264e77e6178(openai@4.82.0(zod@3.24.2))(react@19.0.0)
       tsup:
         specifier: 8.3.5
-        version: 8.3.5(yaml@2.7.0)
+        version: 8.3.5(typescript@5.7.3)(yaml@2.7.0)
       zod:
         specifier: ^3.24.1
         version: 3.24.2
+    devDependencies:
+      typescript:
+        specifier: ^5.7.3
+        version: 5.7.3
 
 packages:
 
@@ -558,8 +562,8 @@ packages:
   '@jridgewell/trace-mapping@0.3.25':
     resolution: {integrity: sha512-vNk6aEwybGtawWmy/PzwnGDOjCkLWSD2wqvjGGAgOAwCGWySYXfYoxt00IJkTF+8Lb57DwOb3Aa0o9CApepiYQ==}
 
-  '@langchain/core@0.3.39':
-    resolution: {integrity: sha512-muXs4asy1A7qDtcdznxqyBfxf4N6qxofY/S0c95vbsWa0r9YAE2PttHIjcuxSy1q2jUiTkpCcgFEjNJRQRVhEw==}
+  '@langchain/core@0.3.40':
+    resolution: {integrity: sha512-RGhJOTzJv6H+3veBAnDlH2KXuZ68CXMEg6B6DPTzL3IGDyd+vLxXG4FIttzUwjdeQKjrrFBwlXpJDl7bkoApzQ==}
     engines: {node: '>=18'}
 
   '@langchain/langgraph-checkpoint@0.0.15':
@@ -568,8 +572,11 @@ packages:
     peerDependencies:
       '@langchain/core': '>=0.2.31 <0.4.0'
 
-  '@langchain/langgraph-sdk@0.0.38':
-    resolution: {integrity: sha512-GCBFj7ZBzACAjqtg6z0OC/79af6OMUghd8wCVrvZhlp+azcGaC6ZxJS6+eJ+pPlWuUDTi1ws7hsNa/0vA3pN7Q==}
+  '@langchain/langgraph-sdk@0.0.40':
+    resolution: {integrity: sha512-zntl+Iaa4Ym1JChbsFvqL84bF2lkZqeRhGbDtOSsdwABBfr3KNiPBbCueGqLFQ9l0sA55bYUbMcMvh4zXpdygA==}
+    peerDependencies:
+      '@langchain/core': '>=0.2.31 <0.4.0'
+      react: ^18 || ^19
 
   '@langchain/langgraph@0.2.46':
     resolution: {integrity: sha512-dO/EKvSyYfHCmvF7JYBwSuc2czy5dOF6ScSNEmQxq/XHXkN7QkdahBkWPAU/+iw6Cafeljc/XuTxBJxMZB2pFQ==}
@@ -932,8 +939,8 @@ packages:
   '@types/node@18.19.75':
     resolution: {integrity: sha512-UIksWtThob6ZVSyxcOqCLOUNg/dyO1Qvx4McgeuhrEtHTLFTf7BBhEazaE4K806FGTPtzd/2sE90qn4fVr7cyw==}
 
-  '@types/node@22.13.1':
-    resolution: {integrity: sha512-jK8uzQlrvXqEU91UxiK5J7pKHyzgnI1Qnl0QDHIgVGuolJhRb9EEl28Cj9b3rGR8B2lhFCtvIm5os8lFnO/1Ew==}
+  '@types/node@22.13.2':
+    resolution: {integrity: sha512-Z+r8y3XL9ZpI2EY52YYygAFmo2/oWfNSj4BCpAXE2McAexDk8VcnBMGC9Djn9gTKt4d2T/hhXqmPzo4hfIXtTg==}
 
   '@types/retry@0.12.0':
     resolution: {integrity: sha512-wWKOClTTiizcZhXnPY4wikVAwmdYHp8q6DmC+EJUzAMsycb7HB32Kh9RN4+0gExjmPmZSAQjgURXIGATPegAvA==}
@@ -1307,8 +1314,8 @@ packages:
   hash.js@1.1.7:
     resolution: {integrity: sha512-taOaskGt4z4SOANNseOviYDvjEJinIkRgmp7LbKP2YTTmVxWBl87s/uzK9r+44BclBSp2X7K1hqeNfz9JbBeXA==}
 
-  hedera-agent-kit@https://codeload.github.com/mateuszm-arianelabs/hedera-agent-kit/tar.gz/e4779badb6b67bc17ae644a53e200e9ad23cac5b:
-    resolution: {tarball: https://codeload.github.com/mateuszm-arianelabs/hedera-agent-kit/tar.gz/e4779badb6b67bc17ae644a53e200e9ad23cac5b}
+  hedera-agent-kit@https://codeload.github.com/mateuszm-arianelabs/hedera-agent-kit/tar.gz/69fe723d99aa8849af061f7d1764e264e77e6178:
+    resolution: {tarball: https://codeload.github.com/mateuszm-arianelabs/hedera-agent-kit/tar.gz/69fe723d99aa8849af061f7d1764e264e77e6178}
     version: 1.0.2
 
   help-me@5.0.0:
@@ -1606,8 +1613,8 @@ packages:
       zod:
         optional: true
 
-  openai@4.83.0:
-    resolution: {integrity: sha512-fmTsqud0uTtRKsPC7L8Lu55dkaTwYucqncDHzVvO64DKOpNTuiYwjbR/nVgpapXuYy8xSnhQQPUm+3jQaxICgw==}
+  openai@4.84.0:
+    resolution: {integrity: sha512-Smu45QjqWcPXkTHAI7GSeW+sI9ZOqB9VW4wiuhBvWLGHYC9dn/3rIpG8PUysbCT+ciVyDdEdsx0zkgKQDoOx9Q==}
     hasBin: true
     peerDependencies:
       ws: ^8.18.0
@@ -1940,6 +1947,11 @@ packages:
 
   tweetnacl@1.0.3:
     resolution: {integrity: sha512-6rt+RN7aOi1nGMyC4Xa5DdYiukl2UWCbcJft7YhxReBGQD7OAM8Pbxw6YMo4r2diNEA8FEmu32YOn9rhaiE5yw==}
+
+  typescript@5.7.3:
+    resolution: {integrity: sha512-84MVSjMEHP+FQRPy3pX9sTVV/INIex71s9TL2Gm5FG/WG1SqXeKyZ0k7/blY/4FdOzI12CBy1vGc4og/eus0fw==}
+    engines: {node: '>=14.17'}
+    hasBin: true
 
   uglify-js@3.19.3:
     resolution: {integrity: sha512-v3Xu+yuwBXisp6QYTcH4UbH+xYJXqnq2m/LtQVWKWzYc1iehYnLixoQDN9FH6/j9/oybfd6W9Ghwkl8+UMKTKQ==}
@@ -2535,7 +2547,7 @@ snapshots:
 
   '@cfworker/json-schema@4.1.1': {}
 
-  '@elizaos/core@0.25.6-alpha.1(@google-cloud/vertexai@1.9.3)(@langchain/core@0.3.39(openai@4.82.0(zod@3.24.2)))(axios@1.7.9)(react@19.0.0)(zod@3.24.2)':
+  '@elizaos/core@0.25.6-alpha.1(@google-cloud/vertexai@1.9.3)(@langchain/core@0.3.40(openai@4.82.0(zod@3.24.2)))(axios@1.7.9)(react@19.0.0)(zod@3.24.2)':
     dependencies:
       '@ai-sdk/amazon-bedrock': 1.1.0(zod@3.24.2)
       '@ai-sdk/anthropic': 0.0.56(zod@3.24.2)
@@ -2557,7 +2569,7 @@ snapshots:
       handlebars: 4.7.8
       js-sha1: 0.7.0
       js-tiktoken: 1.0.15
-      langchain: 0.3.6(@langchain/core@0.3.39(openai@4.82.0(zod@3.24.2)))(axios@1.7.9)(handlebars@4.7.8)(openai@4.82.0(zod@3.24.2))
+      langchain: 0.3.6(@langchain/core@0.3.40(openai@4.82.0(zod@3.24.2)))(axios@1.7.9)(handlebars@4.7.8)(openai@4.82.0(zod@3.24.2))
       ollama-ai-provider: 0.16.1(zod@3.24.2)
       openai: 4.82.0(zod@3.24.2)
       pino: 9.6.0
@@ -2803,7 +2815,7 @@ snapshots:
   '@grpc/grpc-js@1.8.2':
     dependencies:
       '@grpc/proto-loader': 0.7.13
-      '@types/node': 22.13.1
+      '@types/node': 22.13.2
 
   '@grpc/proto-loader@0.7.13':
     dependencies:
@@ -2882,7 +2894,7 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.0
 
-  '@langchain/core@0.3.39(openai@4.82.0(zod@3.24.2))':
+  '@langchain/core@0.3.40(openai@4.82.0(zod@3.24.2))':
     dependencies:
       '@cfworker/json-schema': 4.1.1
       ansi-styles: 5.2.0
@@ -2899,40 +2911,44 @@ snapshots:
     transitivePeerDependencies:
       - openai
 
-  '@langchain/langgraph-checkpoint@0.0.15(@langchain/core@0.3.39(openai@4.82.0(zod@3.24.2)))':
+  '@langchain/langgraph-checkpoint@0.0.15(@langchain/core@0.3.40(openai@4.82.0(zod@3.24.2)))':
     dependencies:
-      '@langchain/core': 0.3.39(openai@4.82.0(zod@3.24.2))
+      '@langchain/core': 0.3.40(openai@4.82.0(zod@3.24.2))
       uuid: 10.0.0
 
-  '@langchain/langgraph-sdk@0.0.38':
+  '@langchain/langgraph-sdk@0.0.40(@langchain/core@0.3.40(openai@4.82.0(zod@3.24.2)))(react@19.0.0)':
     dependencies:
+      '@langchain/core': 0.3.40(openai@4.82.0(zod@3.24.2))
       '@types/json-schema': 7.0.15
       p-queue: 6.6.2
       p-retry: 4.6.2
+      react: 19.0.0
       uuid: 9.0.1
 
-  '@langchain/langgraph@0.2.46(@langchain/core@0.3.39(openai@4.82.0(zod@3.24.2)))':
+  '@langchain/langgraph@0.2.46(@langchain/core@0.3.40(openai@4.82.0(zod@3.24.2)))(react@19.0.0)':
     dependencies:
-      '@langchain/core': 0.3.39(openai@4.82.0(zod@3.24.2))
-      '@langchain/langgraph-checkpoint': 0.0.15(@langchain/core@0.3.39(openai@4.82.0(zod@3.24.2)))
-      '@langchain/langgraph-sdk': 0.0.38
+      '@langchain/core': 0.3.40(openai@4.82.0(zod@3.24.2))
+      '@langchain/langgraph-checkpoint': 0.0.15(@langchain/core@0.3.40(openai@4.82.0(zod@3.24.2)))
+      '@langchain/langgraph-sdk': 0.0.40(@langchain/core@0.3.40(openai@4.82.0(zod@3.24.2)))(react@19.0.0)
       uuid: 10.0.0
       zod: 3.24.2
+    transitivePeerDependencies:
+      - react
 
-  '@langchain/openai@0.3.17(@langchain/core@0.3.39(openai@4.82.0(zod@3.24.2)))':
+  '@langchain/openai@0.3.17(@langchain/core@0.3.40(openai@4.82.0(zod@3.24.2)))':
     dependencies:
-      '@langchain/core': 0.3.39(openai@4.82.0(zod@3.24.2))
+      '@langchain/core': 0.3.40(openai@4.82.0(zod@3.24.2))
       js-tiktoken: 1.0.18
-      openai: 4.83.0(zod@3.24.2)
+      openai: 4.84.0(zod@3.24.2)
       zod: 3.24.2
       zod-to-json-schema: 3.24.1(zod@3.24.2)
     transitivePeerDependencies:
       - encoding
       - ws
 
-  '@langchain/textsplitters@0.1.0(@langchain/core@0.3.39(openai@4.82.0(zod@3.24.2)))':
+  '@langchain/textsplitters@0.1.0(@langchain/core@0.3.40(openai@4.82.0(zod@3.24.2)))':
     dependencies:
-      '@langchain/core': 0.3.39(openai@4.82.0(zod@3.24.2))
+      '@langchain/core': 0.3.40(openai@4.82.0(zod@3.24.2))
       js-tiktoken: 1.0.15
 
   '@msgpack/msgpack@3.0.1': {}
@@ -3341,7 +3357,7 @@ snapshots:
     dependencies:
       undici-types: 5.26.5
 
-  '@types/node@22.13.1':
+  '@types/node@22.13.2':
     dependencies:
       undici-types: 6.20.0
 
@@ -3722,12 +3738,12 @@ snapshots:
       inherits: 2.0.4
       minimalistic-assert: 1.0.1
 
-  hedera-agent-kit@https://codeload.github.com/mateuszm-arianelabs/hedera-agent-kit/tar.gz/e4779badb6b67bc17ae644a53e200e9ad23cac5b(openai@4.82.0(zod@3.24.2)):
+  hedera-agent-kit@https://codeload.github.com/mateuszm-arianelabs/hedera-agent-kit/tar.gz/69fe723d99aa8849af061f7d1764e264e77e6178(openai@4.82.0(zod@3.24.2))(react@19.0.0):
     dependencies:
       '@hashgraph/sdk': 2.58.0
-      '@langchain/core': 0.3.39(openai@4.82.0(zod@3.24.2))
-      '@langchain/langgraph': 0.2.46(@langchain/core@0.3.39(openai@4.82.0(zod@3.24.2)))
-      '@langchain/openai': 0.3.17(@langchain/core@0.3.39(openai@4.82.0(zod@3.24.2)))
+      '@langchain/core': 0.3.40(openai@4.82.0(zod@3.24.2))
+      '@langchain/langgraph': 0.2.46(@langchain/core@0.3.40(openai@4.82.0(zod@3.24.2)))(react@19.0.0)
+      '@langchain/openai': 0.3.17(@langchain/core@0.3.40(openai@4.82.0(zod@3.24.2)))
       bignumber.js: 9.1.2
       dotenv: 16.4.7
     transitivePeerDependencies:
@@ -3737,6 +3753,7 @@ snapshots:
       - expo-crypto
       - expo-random
       - openai
+      - react
       - ws
 
   help-me@5.0.0: {}
@@ -3823,11 +3840,11 @@ snapshots:
       jwa: 2.0.0
       safe-buffer: 5.2.1
 
-  langchain@0.3.6(@langchain/core@0.3.39(openai@4.82.0(zod@3.24.2)))(axios@1.7.9)(handlebars@4.7.8)(openai@4.82.0(zod@3.24.2)):
+  langchain@0.3.6(@langchain/core@0.3.40(openai@4.82.0(zod@3.24.2)))(axios@1.7.9)(handlebars@4.7.8)(openai@4.82.0(zod@3.24.2)):
     dependencies:
-      '@langchain/core': 0.3.39(openai@4.82.0(zod@3.24.2))
-      '@langchain/openai': 0.3.17(@langchain/core@0.3.39(openai@4.82.0(zod@3.24.2)))
-      '@langchain/textsplitters': 0.1.0(@langchain/core@0.3.39(openai@4.82.0(zod@3.24.2)))
+      '@langchain/core': 0.3.40(openai@4.82.0(zod@3.24.2))
+      '@langchain/openai': 0.3.17(@langchain/core@0.3.40(openai@4.82.0(zod@3.24.2)))
+      '@langchain/textsplitters': 0.1.0(@langchain/core@0.3.40(openai@4.82.0(zod@3.24.2)))
       js-tiktoken: 1.0.15
       js-yaml: 4.1.0
       jsonpointer: 5.0.1
@@ -3980,7 +3997,7 @@ snapshots:
     transitivePeerDependencies:
       - encoding
 
-  openai@4.83.0(zod@3.24.2):
+  openai@4.84.0(zod@3.24.2):
     dependencies:
       '@types/node': 18.19.75
       '@types/node-fetch': 2.6.12
@@ -4116,7 +4133,7 @@ snapshots:
       '@protobufjs/path': 1.1.2
       '@protobufjs/pool': 1.1.0
       '@protobufjs/utf8': 1.1.0
-      '@types/node': 22.13.1
+      '@types/node': 22.13.2
       long: 5.3.0
 
   proxy-from-env@1.1.0: {}
@@ -4325,7 +4342,7 @@ snapshots:
 
   tslib@2.8.1: {}
 
-  tsup@8.3.5(yaml@2.7.0):
+  tsup@8.3.5(typescript@5.7.3)(yaml@2.7.0):
     dependencies:
       bundle-require: 5.1.0(esbuild@0.24.2)
       cac: 6.7.14
@@ -4343,6 +4360,8 @@ snapshots:
       tinyexec: 0.3.2
       tinyglobby: 0.2.10
       tree-kill: 1.2.2
+    optionalDependencies:
+      typescript: 5.7.3
     transitivePeerDependencies:
       - jiti
       - supports-color
@@ -4350,6 +4369,8 @@ snapshots:
       - yaml
 
   tweetnacl@1.0.3: {}
+
+  typescript@5.7.3: {}
 
   uglify-js@3.19.3:
     optional: true
