@@ -39,12 +39,12 @@ export const createTopicAction: Action = {
                 modelClass: ModelClass.SMALL,
             });
 
+            console.log(
+                `Extracted data: ${JSON.stringify(createTopicContent, null, 2)}`
+            );
+
             const createTopicData =
                 createTopicParamsSchema.parse(createTopicContent);
-
-            console.log(
-                `Extracted data: ${JSON.stringify(createTopicData, null, 2)}`
-            );
 
             const hederaProvider = new HederaProvider(runtime);
             const networkType = runtime.getSetting(
