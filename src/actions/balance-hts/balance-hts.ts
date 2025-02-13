@@ -1,6 +1,5 @@
 import {
     composeContext,
-    elizaLogger,
     generateObjectDeprecated,
     HandlerCallback,
     IAgentRuntime,
@@ -43,7 +42,7 @@ export const balanceHtsAction = {
             address: hederaHtsBalanceContent.address,
         };
 
-        elizaLogger.log(
+        console.log(
             `Extracted data: ${JSON.stringify(paramOptions, null, 2)}`
         );
 
@@ -82,7 +81,7 @@ export const balanceHtsAction = {
             }
             return true;
         } catch (error) {
-            elizaLogger.error(
+            console.error(
                 "Error during fetching HTS token balance:",
                 error
             );

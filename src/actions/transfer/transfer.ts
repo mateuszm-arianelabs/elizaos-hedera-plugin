@@ -1,7 +1,6 @@
 import {
     Action,
     composeContext,
-    elizaLogger,
     generateObjectDeprecated,
     HandlerCallback,
     type IAgentRuntime,
@@ -39,7 +38,7 @@ export const transferAction: Action = {
                 modelClass: ModelClass.SMALL,
             });
 
-            elizaLogger.log(
+            console.log(
                 `Extracted data: ${JSON.stringify(hederaTransferContent, null, 2)}`
             );
 
@@ -66,7 +65,7 @@ export const transferAction: Action = {
 
             return true;
         } catch (error) {
-            elizaLogger.error("Error during HBAR transfer:", error);
+            console.error("Error during HBAR transfer:", error);
 
             await callback({
                 text: `Error during HBAR transfer: ${error.message}`,

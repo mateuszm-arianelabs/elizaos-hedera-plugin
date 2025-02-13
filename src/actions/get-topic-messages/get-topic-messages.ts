@@ -1,6 +1,5 @@
 import {
     composeContext,
-    elizaLogger,
     generateObjectDeprecated,
     HandlerCallback,
     IAgentRuntime,
@@ -46,7 +45,7 @@ export const getTopicMessagesAction = {
             upperThreshold: hederaGetTopicMessagesContent.upperThreshold,
         };
 
-        elizaLogger.log(
+        console.log(
             `Extracted data: ${JSON.stringify(paramOptions, null, 2)}`
         );
 
@@ -89,7 +88,7 @@ export const getTopicMessagesAction = {
 
             return true;
         } catch (error) {
-            elizaLogger.error("Error fetching messages. Error:", error);
+            console.error("Error fetching messages. Error:", error);
 
             if (callback) {
                 await callback({

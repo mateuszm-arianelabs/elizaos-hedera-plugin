@@ -1,6 +1,5 @@
 import {
     composeContext,
-    elizaLogger,
     generateObjectDeprecated,
     HandlerCallback,
     IAgentRuntime,
@@ -50,7 +49,7 @@ export const balancesAllTokensAction = {
             const validationResult =
                 hederaAllTokensBalancesParamsSchema.safeParse(paramOptions);
 
-            elizaLogger.log(
+            console.log(
                 `Extracted data: ${JSON.stringify(paramOptions, null, 2)}`
             );
 
@@ -62,7 +61,7 @@ export const balancesAllTokensAction = {
 
             // fallback as LLM model sometimes fails to extract connected wallet account id from agent's state
             if (!paramOptions.address) {
-                elizaLogger.warn(
+                console.warn(
                     `LLM couldn't extract agent's wallet from state. Manually assigning connected wallet address.`
                 );
                 paramOptions.address = runtime.getSetting("HEDERA_ACCOUNT_ID");
@@ -109,7 +108,7 @@ export const balancesAllTokensAction = {
             }
             return true;
         } catch (error) {
-            elizaLogger.error("Error during fetching balance:", error);
+            console.error("Error during fetching balance:", error);
 
             if (_callback) {
                 await _callback({

@@ -1,6 +1,5 @@
 import {
     composeContext,
-    elizaLogger,
     generateObjectDeprecated,
     HandlerCallback,
     IAgentRuntime,
@@ -44,7 +43,7 @@ export const associateTokenAction = {
             tokenId: hederaAssociateTokenContent.tokenId,
         };
 
-        elizaLogger.log(
+        console.log(
             `Extracted data: ${JSON.stringify(paramOptions, null, 2)}`
         );
 
@@ -78,7 +77,7 @@ export const associateTokenAction = {
             }
             return true;
         } catch (error) {
-            elizaLogger.error(
+            console.error(
                 `Error during associating token ${paramOptions.tokenId}:`,
                 error
             );

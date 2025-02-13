@@ -1,7 +1,6 @@
 import {
     Action,
     composeContext,
-    elizaLogger,
     generateObjectDeprecated,
     HandlerCallback,
     IAgentRuntime,
@@ -39,7 +38,7 @@ export const pendingAirdropsAction: Action = {
             modelClass: ModelClass.SMALL,
         });
 
-        elizaLogger.log(
+        console.log(
             `Extracted data: ${JSON.stringify(pendingAirdropsContext, null, 2)}`
         );
 
@@ -96,7 +95,7 @@ export const pendingAirdropsAction: Action = {
 
             return true;
         } catch (error) {
-            elizaLogger.error("Error during fetching pending airdrops:", error);
+            console.error("Error during fetching pending airdrops:", error);
 
             if (callback) {
                 await callback({

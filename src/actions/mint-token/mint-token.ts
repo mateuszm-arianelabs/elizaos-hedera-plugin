@@ -1,6 +1,5 @@
 import {
     composeContext,
-    elizaLogger,
     generateObjectDeprecated,
     HandlerCallback,
     IAgentRuntime,
@@ -45,7 +44,7 @@ export const mintTokenAction = {
             amount: hederaMintTokenContent.amount,
         };
 
-        elizaLogger.log(
+        console.log(
             `Extracted data: ${JSON.stringify(paramOptions, null, 2)}`
         );
 
@@ -84,7 +83,7 @@ export const mintTokenAction = {
 
             return true;
         } catch (error) {
-            elizaLogger.error("Error during minting tokens. Error:", error);
+            console.error("Error during minting tokens. Error:", error);
 
             if (callback) {
                 await callback({

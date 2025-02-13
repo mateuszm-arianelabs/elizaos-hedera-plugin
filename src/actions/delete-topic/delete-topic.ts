@@ -1,7 +1,6 @@
 import {
     Action,
     composeContext,
-    elizaLogger,
     generateObjectDeprecated,
     HandlerCallback,
     type IAgentRuntime,
@@ -61,7 +60,7 @@ export const deleteTopicAction: Action = {
 
             return true;
         } catch (error) {
-            elizaLogger.error("Error during topic deletion:", error);
+            console.error("Error during topic deletion:", error);
 
             await callback({
                 text: `Error during topic deletion: ${error.message}`,

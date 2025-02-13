@@ -1,6 +1,5 @@
 import {
     composeContext,
-    elizaLogger,
     generateObjectDeprecated,
     HandlerCallback,
     IAgentRuntime,
@@ -45,7 +44,7 @@ export const submitTopicMessageAction = {
             message: hederaSubmitTopicMessageContent.message,
         };
 
-        elizaLogger.log(
+        console.log(
             `Extracted data: ${JSON.stringify(paramOptions, null, 2)}`
         );
 
@@ -82,7 +81,7 @@ export const submitTopicMessageAction = {
 
             return true;
         } catch (error) {
-            elizaLogger.error(
+            console.error(
                 "Error during submitting message. You might not have the submitting privileges for this topic. Error:",
                 error
             );

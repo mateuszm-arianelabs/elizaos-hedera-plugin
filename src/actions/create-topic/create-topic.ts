@@ -1,7 +1,6 @@
 import {
     Action,
     composeContext,
-    elizaLogger,
     generateObjectDeprecated,
     HandlerCallback,
     type IAgentRuntime,
@@ -43,7 +42,7 @@ export const createTopicAction: Action = {
             const createTopicData =
                 createTopicParamsSchema.parse(createTopicContent);
 
-            elizaLogger.log(
+            console.log(
                 `Extracted data: ${JSON.stringify(createTopicData, null, 2)}`
             );
 
@@ -69,7 +68,7 @@ export const createTopicAction: Action = {
 
             return true;
         } catch (error) {
-            elizaLogger.error("Error during topic creation:", error);
+            console.error("Error during topic creation:", error);
 
             await callback({
                 text: `Error during topic creation: ${error.message}`,

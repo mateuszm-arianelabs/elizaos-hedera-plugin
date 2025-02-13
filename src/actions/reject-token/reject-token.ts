@@ -1,6 +1,5 @@
 import {
     composeContext,
-    elizaLogger,
     generateObjectDeprecated,
     HandlerCallback,
     IAgentRuntime,
@@ -43,7 +42,7 @@ export const rejectTokenAction = {
             tokenId: hederaRejectTokenContent.tokenId,
         };
 
-        elizaLogger.log(
+        console.log(
             `Extracted data: ${JSON.stringify(paramOptions, null, 2)}`
         );
 
@@ -78,7 +77,7 @@ export const rejectTokenAction = {
             }
             return true;
         } catch (error) {
-            elizaLogger.error(
+            console.error(
                 `Error rejecting token: ${paramOptions.tokenId}.`,
                 error
             );

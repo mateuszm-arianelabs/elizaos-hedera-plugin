@@ -2,7 +2,6 @@ import { hederaAirdropTokenTemplate } from "../../templates";
 import {
     Action,
     composeContext,
-    elizaLogger,
     generateObjectDeprecated,
     HandlerCallback,
     type IAgentRuntime,
@@ -40,7 +39,7 @@ export const airdropTokenAction: Action = {
                 modelClass: ModelClass.SMALL,
             });
 
-            elizaLogger.log(
+            console.log(
                 `Extracted data: ${JSON.stringify(hederaAirdropTokenContent, null, 2)}`
             );
 
@@ -69,7 +68,7 @@ export const airdropTokenAction: Action = {
 
             return true;
         } catch (error) {
-            elizaLogger.error("Error during token airdrop:", error);
+            console.error("Error during token airdrop:", error);
 
             await callback({
                 text: `Error during token airdrop: ${error.message}`,

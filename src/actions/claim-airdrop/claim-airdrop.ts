@@ -1,7 +1,6 @@
 import {
     Action,
     composeContext,
-    elizaLogger,
     generateObjectDeprecated,
     HandlerCallback,
     IAgentRuntime,
@@ -43,7 +42,7 @@ export const claimAirdropAction: Action = {
             const claimAirdropData =
                 claimAirdropParamsSchema.parse(claimAirdropContent);
 
-            elizaLogger.log(
+            console.log(
                 `Extracted data: ${JSON.stringify(claimAirdropData, null, 2)}`
             );
 
@@ -67,7 +66,7 @@ export const claimAirdropAction: Action = {
 
             return true;
         } catch (error) {
-            elizaLogger.error("Error during claiming airdrop:", error);
+            console.error("Error during claiming airdrop:", error);
 
             if (callback) {
                 await callback({

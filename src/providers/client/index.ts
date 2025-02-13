@@ -1,4 +1,4 @@
-import { elizaLogger, IAgentRuntime, Memory, State } from "@elizaos/core";
+import { IAgentRuntime, Memory, State } from "@elizaos/core";
 import { PrivateKey } from "@hashgraph/sdk";
 import { HederaKeyParams, HederaPrivateKeyResult } from "../../shared/types.ts";
 import { HederaAgentKit } from "hedera-agent-kit";
@@ -36,7 +36,7 @@ export const initAgentKit = (_runtime: IAgentRuntime): HederaAgentKit => {
             networkType
         );
     } catch (error) {
-        elizaLogger.error("Error initialising HederaAgentKit: ", error);
+        console.error("Error initialising HederaAgentKit: ", error);
     }
     return hederaAgentKit;
 };
@@ -79,7 +79,7 @@ export const hederaClientProvider = {
 
             return `${agentName}'s Hedera Wallet Address: ${address}\nBalance: ${balance} HBAR\n`;
         } catch (error) {
-            elizaLogger.error("Error in Hedera client provider:", error);
+            console.error("Error in Hedera client provider:", error);
             return null;
         }
     },

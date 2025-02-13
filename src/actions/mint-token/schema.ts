@@ -2,5 +2,5 @@ import { z } from "zod";
 
 export const hederaMintTokenParamsSchema = z.object({
     tokenId: z.string(),
-    amount: z.number(),
+    amount: z.coerce.number(),
 });

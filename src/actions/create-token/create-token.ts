@@ -1,7 +1,6 @@
 import {
     Action,
     composeContext,
-    elizaLogger,
     generateObjectDeprecated,
     HandlerCallback,
     type IAgentRuntime,
@@ -44,7 +43,7 @@ export const createTokenAction: Action = {
                 hederaCreateTokenContent
             );
 
-            elizaLogger.log(
+            console.log(
                 `Extracted data: ${JSON.stringify(createTokenData, null, 2)}`
             );
 
@@ -66,7 +65,7 @@ export const createTokenAction: Action = {
 
             return true;
         } catch (error) {
-            elizaLogger.error("Error during token creation:", error);
+            console.error("Error during token creation:", error);
 
             await callback({
                 text: `Error during token creation: ${error.message}`,

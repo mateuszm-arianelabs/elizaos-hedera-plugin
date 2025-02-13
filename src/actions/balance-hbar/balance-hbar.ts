@@ -1,6 +1,5 @@
 import {
     composeContext,
-    elizaLogger,
     generateObjectDeprecated,
     HandlerCallback,
     IAgentRuntime,
@@ -42,7 +41,7 @@ export const balanceHbarAction = {
             address: hederaHbarBalanceContent.address,
         };
 
-        elizaLogger.log(
+        console.log(
             `Extracted data: ${JSON.stringify(paramOptions, null, 2)}`
         );
 
@@ -76,7 +75,7 @@ export const balanceHbarAction = {
             }
             return true;
         } catch (error) {
-            elizaLogger.error("Error during fetching balance:", error);
+            console.error("Error during fetching balance:", error);
 
             if (_callback) {
                 await _callback({

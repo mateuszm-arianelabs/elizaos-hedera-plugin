@@ -1,6 +1,5 @@
 import {
     composeContext,
-    elizaLogger,
     generateObjectDeprecated,
     HandlerCallback,
     IAgentRuntime,
@@ -41,7 +40,7 @@ export const topicInfoAction = {
             topicId: hederaTopicInfoContent.topicId,
         };
 
-        elizaLogger.log(
+        console.log(
             `Extracted data: ${JSON.stringify(paramOptions, null, 2)}`
         );
 
@@ -80,7 +79,7 @@ export const topicInfoAction = {
             }
             return true;
         } catch (error) {
-            elizaLogger.error("Error during fetching topic info: ", error);
+            console.error("Error during fetching topic info: ", error);
 
             if (callback) {
                 await callback({

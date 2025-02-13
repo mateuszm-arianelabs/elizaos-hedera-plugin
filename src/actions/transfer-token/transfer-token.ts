@@ -1,7 +1,6 @@
 import {
     Action,
     composeContext,
-    elizaLogger,
     generateObjectDeprecated,
     HandlerCallback,
     IAgentRuntime,
@@ -65,7 +64,7 @@ export const transferTokenAction: Action = {
 
             return true;
         } catch (error) {
-            elizaLogger.error("Error during token transfer:", error);
+            console.error("Error during token transfer:", error);
 
             await callback({
                 text: `Error during token transfer: ${error.message}`,
