@@ -1,4 +1,5 @@
 import { HederaNetworkType } from "./types.ts";
+import { z } from "zod";
 
 export function convertTimestampToUTC(timestamp: string): string {
     const [seconds, nanos] = timestamp.split(".").map(Number);
@@ -24,3 +25,18 @@ export function convertStringToTimestamp(input: string): number {
 
     return parseFloat((timestamp / 1000).toFixed(6));
 }
+
+// Custom preprocess to handle string "true"/"false" to boolean values
+export const castToBoolean = z.preprocess((val) => {
+    if (typeof val === 'string') {
+        if (val.toLowerCase() === 'true') return true;
+        if (val.toLowerCase() === 'false') return false;
+        else return false; // false is default
+    }
+    return val; // Return the value as is if it's not a string
+}, z.boolean());
+
+// Custom preprocess to handle LLMs extracting mistakes
+// Sometimes null values are returned as strings and require parsing
+export const castToNull = (value: any) => (value === "null" ? null : value);
+
