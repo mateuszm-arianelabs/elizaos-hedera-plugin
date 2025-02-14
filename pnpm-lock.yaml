@@ -16,7 +16,7 @@ importers:
         version: 2.58.0
       hedera-agent-kit:
         specifier: github:mateuszm-arianelabs/hedera-agent-kit#develop
-        version: https://codeload.github.com/mateuszm-arianelabs/hedera-agent-kit/tar.gz/69fe723d99aa8849af061f7d1764e264e77e6178(openai@4.82.0(zod@3.24.2))(react@19.0.0)
+        version: https://codeload.github.com/mateuszm-arianelabs/hedera-agent-kit/tar.gz/c7daf9634dd3c6e04c761855f2508dd5628845d0(openai@4.82.0(zod@3.24.2))(react@19.0.0)
       tsup:
         specifier: 8.3.5
         version: 8.3.5(typescript@5.7.3)(yaml@2.7.0)
@@ -1581,8 +1581,8 @@ packages:
   hash.js@1.1.7:
     resolution: {integrity: sha512-taOaskGt4z4SOANNseOviYDvjEJinIkRgmp7LbKP2YTTmVxWBl87s/uzK9r+44BclBSp2X7K1hqeNfz9JbBeXA==}
 
-  hedera-agent-kit@https://codeload.github.com/mateuszm-arianelabs/hedera-agent-kit/tar.gz/69fe723d99aa8849af061f7d1764e264e77e6178:
-    resolution: {tarball: https://codeload.github.com/mateuszm-arianelabs/hedera-agent-kit/tar.gz/69fe723d99aa8849af061f7d1764e264e77e6178}
+  hedera-agent-kit@https://codeload.github.com/mateuszm-arianelabs/hedera-agent-kit/tar.gz/c7daf9634dd3c6e04c761855f2508dd5628845d0:
+    resolution: {tarball: https://codeload.github.com/mateuszm-arianelabs/hedera-agent-kit/tar.gz/c7daf9634dd3c6e04c761855f2508dd5628845d0}
     version: 1.0.2
 
   help-me@5.0.0:
@@ -4436,7 +4436,7 @@ snapshots:
       inherits: 2.0.4
       minimalistic-assert: 1.0.1
 
-  hedera-agent-kit@https://codeload.github.com/mateuszm-arianelabs/hedera-agent-kit/tar.gz/69fe723d99aa8849af061f7d1764e264e77e6178(openai@4.82.0(zod@3.24.2))(react@19.0.0):
+  hedera-agent-kit@https://codeload.github.com/mateuszm-arianelabs/hedera-agent-kit/tar.gz/c7daf9634dd3c6e04c761855f2508dd5628845d0(openai@4.82.0(zod@3.24.2))(react@19.0.0):
     dependencies:
       '@hashgraph/sdk': 2.58.0
       '@langchain/core': 0.3.40(openai@4.82.0(zod@3.24.2))

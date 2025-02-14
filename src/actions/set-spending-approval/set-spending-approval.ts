@@ -74,8 +74,9 @@ export const setSpendingApprovalAction = {
 
             if (callback && response.status === TxStatus.SUCCESS) {
                 const url = generateHashscanUrl(response.txHash, networkType);
+                const token = paramOptions.tokenId ? paramOptions.tokenId : "HBAR";
                 await callback({
-                    text: `Successfully set the spending approval of ${paramOptions.amount} of tokens ${paramOptions.tokenId} for the account ${paramOptions.spenderAccountId}.\nTransaction link: ${url}`,
+                    text: `Successfully set the spending approval of ${paramOptions.amount} of tokens ${token} for the account ${paramOptions.spenderAccountId}.\nTransaction link: ${url}`,
                 });
             }
 
