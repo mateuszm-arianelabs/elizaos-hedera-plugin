@@ -59,6 +59,7 @@ To erase agent's memory and run Eliza with recommended character use following s
   rm ./agent/data/db.sqlite ; pnpm run dev --character ./characters/universalHelper.character.json 
 ```
 ---
+
 ## Provider
 Plugin implements provider creating instance of `HederaAgentKit` from 
 `hedera-agent-kit`. `HederaAgentKit` offers API for interacting with Hedera blockchain and supports executing of operations called from actions.
@@ -78,6 +79,7 @@ My current HBAR balance is 999.81307987 HBAR.
 Note that there is no action required for getting agent's HBAR balance.
 
 ---
+
 ## Actions
 
 ### HBAR Balance
@@ -159,7 +161,7 @@ Show me balance of hts token with id 0.0.5450643 for wallet 0.0.5392887.
 
 ### All Tokens Balance
 
-All tokens balance action allows checking all HTS tokens balances of any given valid Hedera wallet.
+All tokens balance action allows checking all HTS tokens balances of any given valid Hedera wallet. Works with both fungible and non-fungible tokens.
 Note that this action takes one optional parameter:
 - **AccountId** - id of Hedera account (ex. `0.0.4515512`)
 
@@ -233,12 +235,12 @@ Show me your HTS token balances.
 
 ### Token Holders
 
-Token Holders action allows checking all holders of any given valid token. Token is passed by its token id.
+Token Holders action allows checking all holders of any given valid token - works both with fungible and non-fungible tokens. Token is passed by its token id.
 Note that this action takes two parameters:
 - **tokenId** - valid token id (ex. `0.0.5446064`) - required parameter
 - **threshold** - integer non-negative number, if passed 0 action will return all addresses associated with the token - optional parameter
 
-If threshold is not passed the action will fetch all wallets associated with given token and with non-zero balances. For example see following section.
+If threshold is not passed the action will fetch all wallets associated with given token that have with non-zero balances. For example see following section.
 #### Example Prompts
 
 Below is presented a flow of using All tokens balance action
@@ -648,9 +650,9 @@ Remove airdropped token 0.0.654321 from my account.
 
 ### Associate Token
 
-Associate Token action allows to add selected token to your account.
+Associate Token action allows to add selected token to your account. This action works with both fungible and non-fungible tokens.
 Note that this action takes one mandatory parameter:
-- **Token id** - id of token to associate
+- **Token id** - id of token to associate - either fungible or non-fungible
 
 #### Example Prompts
 
@@ -687,7 +689,7 @@ Make my wallet associated with token 0.0.999000.
 
 ### Dissociate Token
 
-Dissociate Token action allows to remove selected token from your account.
+Dissociate Token action allows to remove association with selected token from your account. Works with both fungible and non-fungible tokens.
 Note that this action takes one mandatory parameter:
 - **Token id** - id of token to dissociate
 
