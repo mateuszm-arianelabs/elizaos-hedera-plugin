@@ -15,7 +15,7 @@ import { createNFTTokenParamsSchema } from "./schema.ts";
 import { generateHashscanUrl } from "../../shared/utils.ts";
 import { HederaNetworkType } from "hedera-agent-kit/src/types";
 import { TxStatus } from "../../shared/constants.ts";
-import { createDetailsDescription } from "./utils.ts";
+import { createNFTDetailsDescription } from "./utils.ts";
 
 export const createNFTTokenAction: Action = {
     name: "HEDERA_CREATE_NFT_TOKEN",
@@ -61,7 +61,7 @@ export const createNFTTokenAction: Action = {
                 const url = generateHashscanUrl(response.txHash, networkType);
 
                 await callback({
-                    text: `Created new NFT token with id: ${response.tokenId.toString()}\n\nDetails:${createDetailsDescription(createTokenData)}\n\nTransaction link: ${url}`,
+                    text: `Created new NFT token with id: ${response.tokenId.toString()}\n\nDetails:${createNFTDetailsDescription(createTokenData)}\n\nTransaction link: ${url}`,
                 });
             }
 

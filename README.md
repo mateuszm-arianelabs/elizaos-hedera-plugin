@@ -327,13 +327,17 @@ Note that this action takes four mandatory parameters:
 - **symbol** - token symbol as uppercase short string
 - **decimals** - token decimals as number
 - **initialSupply** - initial supply of fungible tokens given in display format
-- **isSupplyKey** - boolean deciding whether agent's key should be set as supply key allowing to mint more tokens
+- **isSupplyKey** - boolean deciding whether agent's key should be set as supply key allowing to mint more tokens (optional)
+- **isMetadataKey** - boolean deciding whether agent's key should be set as metadata key (optional)
+- **isAdminKey** - boolean deciding whether agent's key should be set as admin key (optional)
+- **memo** - short text
+- **tokenMetadata** - metadata for token
 
 #### Example Prompts
 
 Below is presented a flow of using Create Token action
 
-##### Without supplyKey:
+##### Without optional params:
 1. User input:
 
 ```
@@ -353,11 +357,13 @@ Created new token with id: 0.0.5478715
 Transaction link: https://hashscan.io/testnet/tx/0.0.5393196@1738841329.271042438
 ```
 
-##### With supplyKey:
+##### With supplyKey, adminKey and metadataKey:
+_Note:_ Try to be specific about the keys. Data extraction error might occur if full phrase `Add supply key` or `Add admin key` won't appear. 
+Also, it is recommended to use approach `Add supply key, admin key and metadata key` instead of `Add supply, admin and metadata keys`.
 1. User input:
 
 ```
-Create token BitcoinIsGold with symbol BIG, 2 decimal places, and starting supply of 12345. Add supply key.
+Create token BitcoinIsGold with symbol BIG, 2 decimal places, and starting supply of 12345. Add supply key, admin key and metadata key.
 ```
 
 2. LLM response - action execution:
@@ -369,17 +375,69 @@ I will help you create the token 'BitcoinIsGold' with symbol 'BIG', 2 decimal pl
 3. Action's callback response:
 
 ```
-Created new token with id: 0.0.5478721
-Transaction link: https://hashscan.io/testnet/tx/0.0.5393196@1738841441.095220823
+Created new fungible token with id: 0.0.5526711
+
+Details:
+Name: BitcoinIsGold
+Symbol: BIG
+Decimals: 2
+Initial supply: 12345
+Supply Key: Enabled
+Metadata Key: Enabled
+Admin Key: Enabled
+Token Metadata: not set
+Memo: not set
+
+Transaction link: https://hashscan.io/testnet/tx/0.0.5392887@1739795581.817796574
 ```
 
+##### With memo and tokenMetadata:
+1. User input:
+
+```
+Create token GameGold with symbol GG, 2 decimal places, and starting supply of 750000. Set memo to 'This is an example memo' and token metadata to 'And thats an example metadata'.
+```
+
+2. LLM response - action execution:
+
+```
+I will help you create the token 'GameGold' with symbol 'GG', 2 decimal places, and a starting supply of 750,000. This will be the final supply, and no supply key will be set.
+```
+
+3. Action's callback response:
+
+```
+Created new fungible token with id: 0.0.5526695
+
+Details:
+Name: GameGold
+Symbol: GG
+Decimals: 2
+Initial supply: 750000
+Supply Key: not set
+Metadata Key: not set
+Admin Key: not set
+Token Metadata: And thats an example metadata
+Memo: This is an example memo
+
+Transaction link: https://hashscan.io/testnet/tx/0.0.5392887@1739795441.956136901
+```
+
+##### Other options
+
+Other options are possible. The only requirement is providing the base 4 mandatory parameters:
+- **name**
+- **symbol** 
+- **decimals**
+- **initialSupply** 
 
 Examples of other supported requests for this action:
 ```
 Create a new token called CryptoCoin with symbol CCN, 6 decimals, and a total supply of 50000.
 Create token GameGold with symbol GG, 2 decimal places, and starting supply of 750000. This is the final supply, don’t set a supply key.
 Launch a new HTS token called SkyCredits with ticker SKC, 9 decimal places, and a total supply of 2500. The supply is fixed.
-Create new HTS token PixelCoin with symbol PXN, 3 decimal places, and 500 tokens minted. I want to control supply changes, so set the supply key.
+Create new HTS token PixelCoin with symbol PXN, 3 decimal places, and 500 tokens minted. I want to set the supply key and admin key.
+Create a new token called CryptoCoin with symbol CCN, 6 decimals, and a total supply of 50000. Add memo 'example memo' and metadata: 'example metadata'.
 ```
 
 ---

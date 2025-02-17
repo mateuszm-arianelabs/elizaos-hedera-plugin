@@ -56,20 +56,49 @@ Extract the following information about the token to create on hedera blockchain
    - extract information about the supplyKey from user prompt.
    - If information is present, set it to true.
    - If there is no information about supplyKey or it's explicitly said to set it to false in parsed request set it to false!
+   
+4. **Is Metadata Key**:
+   - Boolean - true or false.
+   - Defines if the metadata key is set for the token.
+   - Extract whether metadata key should be enabled (true) or disabled (false).
+   - If there is no information about metadata key or it's explicitly said to not set it, set it to false.
+
+5. **Is Admin Key**:
+   - Boolean - true or false.
+   - Defines if the admin key is set for the token.
+   - Extract whether the admin key should be enabled (true) or disabled (false).
+   - If there is no information about admin key or it's explicitly said to not set it, set it to false.
+
+6. **Token Metadata**:
+   - Must be a string
+   - Optional metadata for the NFT token (string).
+   - If included, extract the value.
+   - If not provided, leave it empty.
+
+7. **Memo**:
+   - Must be a string
+   - Optional field for adding a memo or description for the token creation.
+   - If present, extract the memo content.
+
 
 Always try to extract the information from last message! Do not use previously completed requests data to fill extracted information!
-Respond with a JSON markdown block containing only the extracted values. All fields except 'token' are required:
+Respond with a JSON markdown block containing only the extracted values. Only name, symbol, decimals and initialSupply are required!
+Keep in mind that passing token metadata string does not set the isMetadataKey to true. User might want to add the string but don't set the key.
 \`\`\`json
 {
     "name": string,
     "symbol": string,
     "decimals": number,
     "initialSupply": number,
-    "isSupplyKey": boolean,
+    "isSupplyKey": boolean | null,
+    "isMetadataKey": boolean | null,
+    "isAdminKey": boolean | null,
+    "tokenMetadata": string | null,
+    "memo": string | null,
 }
 \`\`\`
 
-Example response for the input: "Create new token with name MyToken with symbol MTK, 8 decimals and 1000 initial supply", the response should be:
+Example response for the input: "Create new token with name MyToken with symbol MTK, 8 decimals and 1000 initial supply. Set the memo as 'This is a memo' and the metadata as 'And this is metadata for FT token'.", the response should be:
 \`\`\`json
 {
     "name": "MyToken",
@@ -77,10 +106,14 @@ Example response for the input: "Create new token with name MyToken with symbol 
     "decimals": 8,
     "initialSupply": 1000,
     "isSupplyKey": false,
+    "isMetadataKey": false,
+    "isAdminKey": false,
+    "tokenMetadata": "And this is metadata for FT token",
+    "memo": "This is a memo",
 }
 \`\`\`
 
-Example response for the input: "Create new token with name NextToken with symbol NXT, 5 decimals and 1000 initial supply. I want to set the supply key so I could more tokens later.", the response should be:
+Example response for the input: "Create new token with name NextToken with symbol NXT, 5 decimals and 1000 initial supply. I want to set the supply key so I could more tokens later. Also set the metadata and admin key.", the response should be:
 \`\`\`json
 {
     "name": "NextToken",
@@ -88,6 +121,10 @@ Example response for the input: "Create new token with name NextToken with symbo
     "decimals": 5,
     "initialSupply": 1000,
     "isSupplyKey": true,
+    "isMetadataKey": true,
+    "isAdminKey": true,
+    "tokenMetadata": null,
+    "memo": null,
 }
 \`\`\`
 
@@ -99,6 +136,10 @@ Example response for the input: "Create new token with name NextToken with symbo
     "decimals": 5,
     "initialSupply": 1000,
     "isSupplyKey": false,
+    "isMetadataKey": false,
+    "isAdminKey": false,
+    "tokenMetadata": null,
+    "memo": null,
 }
 \`\`\`
 

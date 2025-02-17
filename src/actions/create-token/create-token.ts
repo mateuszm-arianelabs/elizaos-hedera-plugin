@@ -15,6 +15,7 @@ import { createTokenParamsSchema } from "./schema.ts";
 import { generateHashscanUrl } from "../../shared/utils.ts";
 import { HederaNetworkType } from "hedera-agent-kit/src/types";
 import { TxStatus } from "../../shared/constants.ts";
+import { createFTDetailsDescription } from "./utils.ts";
 
 export const createTokenAction: Action = {
     name: "HEDERA_CREATE_TOKEN",
@@ -59,7 +60,7 @@ export const createTokenAction: Action = {
             if (callback && response.status === TxStatus.SUCCESS) {
                 const url = generateHashscanUrl(response.txHash, networkType);
                 await callback({
-                    text: `Created new token with id: ${response.tokenId.toString()}\nTransaction link: ${url}`,
+                    text: `Created new fungible token with id: ${response.tokenId.toString()}\n\nDetails:\n${createFTDetailsDescription(createTokenData)}\n\nTransaction link: ${url}`,
                 });
             }
 

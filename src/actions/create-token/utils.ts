@@ -1,10 +1,13 @@
-import { CreateNFTTokenParams } from "./types.ts";
+import { CreateTokenParams } from "./types.ts";
 
-export const createNFTDetailsDescription = (params: CreateNFTTokenParams): string => {
+export const createFTDetailsDescription = (params: CreateTokenParams): string => {
     const name = `Name: ${params.name}`;
     const symbol = `Symbol: ${params.symbol}`;
-    const maxSupply = `Max Supply: ${params.maxSupply ? params.maxSupply : `not set`}`;
 
+    const decimals = `Decimals: ${params.decimals}`;
+    const initialSupply = `Initial supply: ${params.initialSupply}`;
+
+    const isSupplyKey = `Supply Key: ${params.isMetadataKey === undefined || !params.isSupplyKey ? "not set" : "Enabled"}`;
     const isMetadataKey = `Metadata Key: ${params.isMetadataKey === undefined || !params.isMetadataKey ? "not set" : "Enabled"}`;
     const isAdminKey = `Admin Key: ${params.isAdminKey === undefined || !params.isAdminKey ? "not set" : "Enabled"}`;
 
@@ -14,7 +17,9 @@ export const createNFTDetailsDescription = (params: CreateNFTTokenParams): strin
     return [
         name,
         symbol,
-        maxSupply,
+        decimals,
+        initialSupply,
+        isSupplyKey,
         isMetadataKey,
         isAdminKey,
         tokenMetadata,
