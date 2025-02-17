@@ -926,3 +926,51 @@ Example response for the input: "Increase supply of token 0.0.5423991 by 100000"
 
 Now respond with a JSON markdown block containing only the extracted values.
 `;
+
+export const getSpendingAllowanceTemplate = `Given the wallet information below:
+{{walletInfo}}
+
+And last message from user in {{recentMessages}}
+
+Extract the following information about spending allowance:
+1. **SpenderAccountId*:
+   - must be a string. Do not include dot after last character. Example of correct spenderAccountId: "0.0.539314".
+
+2. **Amount**:
+   - Must be a number.
+   - amount of tokens/HBAR that will be allowed for spending by the spender
+3. **TokenId**:
+   - must be a string. Do not include dot after last character. Example of correct tokenId: "0.0.539314".
+   - is optional
+   - do not include it if was not passed
+   - do not include it if user sets allowance for HBAR spending
+
+Always look at the latest message from user and try to extract data from it!
+Respond with a JSON markdown block containing only the extracted values. All fields except **tokenId** are required:
+\`\`\`json
+{
+    "spenderAccountId": string,
+    "amount": number,
+    "tokenId": string
+}
+\`\`\`
+
+Example response for the input: "Set spending approval for an account 0.0.123456 for 123 HBAR.", the response should be:
+\`\`\`json
+{
+    "spenderAccountId": "0.0.123456",
+    "amount": 123
+}
+\`\`\`
+
+Example response for the input: "Set spending approval for an account 0.0.123456 for 123 tokens 0.0.2222222.", the response should be:
+\`\`\`json
+{
+    "spenderAccountId": "0.0.123456",
+    "amount": 123,
+    "tokenId": "0.0.2222222"
+}
+\`\`\`
+
+Now respond with a JSON markdown block containing only the extracted values.
+`;
