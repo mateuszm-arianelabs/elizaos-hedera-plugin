@@ -649,7 +649,7 @@ Make my wallet associated with token 0.0.999000.
 
 ### Dissociate Token
 
-Dissociate Token action allows to remove selected token from your account.
+Dissociate Token action allows to remove association with selected token from your account. Works with both fungible and non-fungible tokens.
 Note that this action takes one mandatory parameter:
 - **Token id** - id of token to dissociate
 
