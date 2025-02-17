@@ -567,6 +567,46 @@ increase supply of token 0.0.5478757 by 9999
 
 ---
 
+### Mint NFT Token
+
+Mint NFT Token action allows to mint non-fungible token. To do that token should first have an agents key set as supply key assigned to it during its creation.
+Note that this action takes two mandatory parameters:
+- **Token id** - id of token to mint
+- **Token Metadata** - metadata that will be embedded into the token
+
+Minted token will be assigned to its creator account.
+
+#### Example Prompts
+
+Below is presented a flow of using Mint NFT Token action
+
+1. User input:
+
+```
+Mint NFT 0.0.5512318 with metadata 'Testing this nft'.
+```
+
+2. LLM response - action execution:
+
+```
+I'll proceed to mint the NFT with token ID 0.0.5512318 and metadata 'Testing this nft'.
+```
+
+3. Action's callback response:
+
+```
+Successfully minted NFT 0.0.5512318
+Transaction link: https://hashscan.io/testnet/tx/0.0.5392887@1739783546.150091504
+```
+
+Examples of other supported requests for this action:
+```
+Mint NFT 0.0.5478757. Set it's metadata to 'https://example.com/nft-image.png'.
+Mint NFT with id 0.0.5478757. Assign 'https://example.com/nft-image.png' to its metadata.
+```
+
+---
+
 ### Reject Token
 
 Reject token action allows to reject unwanted token received from airdrop on the Hedera network.

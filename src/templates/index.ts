@@ -105,6 +105,124 @@ Example response for the input: "Create new token with name NextToken with symbo
 Now respond with a JSON markdown block containing only the extracted values.
 `;
 
+export const hederaCreateNFTTokenTemplate = `Given the hedera wallet information below:
+{{walletInfo}}
+And last message from user in: {{recentMessages}}
+
+Extract the following information about the NFT token to create on hedera blockchain:
+1. **Token name**:
+   - Extract the name of the NFT token.
+   - The value must be a string representing the name of the new NFT token.
+
+2. **Token Symbol**:
+   - The token symbol is specified as a string.
+   - The string should contain only capitalized letters.
+
+3. **Max Supply**:
+   - Extract only the numeric value from the instruction.
+   - The number of tokens that can be created, if specified. This is an optional field.
+   - If not provided return null
+
+4. **Is Metadata Key**:
+   - Boolean - true or false.
+   - Defines if the metadata key is set for the token.
+   - Extract whether metadata key should be enabled (true) or disabled (false).
+   - If there is no information about metadata key or it's explicitly said to not set it, set it to false.
+
+5. **Is Admin Key**:
+   - Boolean - true or false.
+   - Defines if the admin key is set for the token.
+   - Extract whether the admin key should be enabled (true) or disabled (false).
+   - If there is no information about admin key or it's explicitly said to not set it, set it to false.
+
+6. **Token Metadata**:
+   - Must be a string
+   - Optional metadata for the NFT token (string).
+   - If included, extract the value.
+   - If not provided, leave it empty.
+
+7. **Memo**:
+   - Must be a string
+   - Optional field for adding a memo or description for the token creation.
+   - If present, extract the memo content.
+
+Always try to extract the information from the last message! Do not use previously completed requests data to fill extracted information!
+Respond with a JSON markdown block containing only the extracted values. Only name and symbol are required!
+\`\`\`json
+{
+    "name": string,
+    "symbol": string,
+    "maxSupply": number | null,
+    "isMetadataKey": boolean | null,
+    "isAdminKey": boolean | null,
+    "tokenMetadata": string | null,
+    "memo": string | null,
+}
+\`\`\`
+
+Example response for the input: "Create new NFT token with name MyNFT with symbol NFT, maximum supply of 100, and metadata: 'Metadata content'.", the response should be:
+\`\`\`json
+{
+    "name": "MyNFT",
+    "symbol": "NFT",
+    "maxSupply": 100,
+    "isMetadataKey": false,
+    "isAdminKey": false,
+    "tokenMetadata": "Metadata content",
+    "memo": null
+}
+\`\`\`
+
+Example response for the input: "Create NFT token called ArtToken with symbol ART, maximum supply of 50, and no metadata key. Add memo 'Limited Edition' for the token.", the response should be:
+\`\`\`json
+{
+    "name": "ArtToken",
+    "symbol": "ART",
+    "maxSupply": 50,
+    "isMetadataKey": false,
+    "isAdminKey": false,
+    "tokenMetadata": null,
+    "memo": "Limited Edition"
+}
+\`\`\`
+
+Example response for the input: "Launch NFT token called UniqueNFT with symbol UNQ, maximum supply 10. No metadata key, admin key should be set, and no memo.", the response should be:
+\`\`\`json
+{
+    "name": "UniqueNFT",
+    "symbol": "UNQ",
+    "maxSupply": 10,
+    "isMetadataKey": false,
+    "isAdminKey": true,
+    "tokenMetadata": null,
+    "memo": null
+}
+\`\`\`
+
+Example response for the input: "Launch NFT token called MoonNFT with symbol MOON, maximum supply 1234. Set metadata key and admin key. Create memo 'To the moon!' and metadata 'This is moon NFT token'.", the response should be:
+\`\`\`json
+{
+    "name": "MoonNFT",
+    "symbol": "MOON",
+    "maxSupply": 1234,
+    "isMetadataKey": true,
+    "isAdminKey": true,
+    "tokenMetadata": "This is moon NFT token",
+    "memo": "To the moon!"
+}
+\`\`\`
+
+### Expected return types:
+
+- **String** for \`name\`, \`symbol\`, \`tokenMetadata\`, and \`memo\`.
+- **Number** for \`maxSupply\`.
+- **Boolean** (\`true\` or \`false\`) for \`isMetadataKey\` and \`isAdminKey\`.
+- **Null** where no value is provided or if it’s explicitly stated.
+
+Now respond with a JSON markdown block containing only the extracted values.
+`;
+
+
 export const hederaAirdropTokenTemplate = `Given the recent messages and hedera wallet information below:
 {{recentMessages}}
 {{walletInfo}}
@@ -134,7 +252,7 @@ All fields are required, recipients array should have minimum one accountId(stri
 }
 \`\`\`
 
-Example reponse for the input: "Airdrop 50 tokens 0.0.5425085 for 0.0.5398121, 0.0.5393967, 0.0.5395127", the response should be:
+Example response for the input: "Airdrop 50 tokens 0.0.5425085 for 0.0.5398121, 0.0.5393967, 0.0.5395127", the response should be:
 \`\`\`json
 {
     "tokenId": "0.0.5425085",
@@ -169,7 +287,7 @@ If message include accountId for example "0.0.5422268" extract this data with fo
     - Account Id should look like "0.0.5422268" and should be a string.
     - Account Id as string can't have other chars than numbers 0 to 9 and dots.
     - Dots can neither start nor end accountId, there is always a number on the start and on the end.
-    - If you cant find accountId return structure with account id equall null.
+    - If you cant find accountId return structure with account id equal null.
     - Example account ids are "0.0.5422268", "0.0.4515756"
 
 Respond with a JSON markdown block containing only the extracted values. accountId:
@@ -281,7 +399,7 @@ Respond with a JSON markdown block containing only the extracted values. All fie
     "amount": number // Amount of tokens to send as number.
 \`\`\`
 
-Example reponse for the input: "Make transfer 3.10 of tokens 0.0.5425085 to account 0.0.4515512", the response should be:
+Example response for the input: "Make transfer 3.10 of tokens 0.0.5425085 to account 0.0.4515512", the response should be:
 \`\`\`json
 {
     "tokenId": "0.0.5425085",
@@ -803,6 +921,46 @@ Example response for the input: "Increase supply of token 0.0.5423991 by 100000"
 {
     "tokenId": "0.0.5423991",
     "amount": 100000
+}
+\`\`\`
+
+Now respond with a JSON markdown block containing only the extracted values.
+`;
+
+export const mintNFTTokenTemplate = `Given the wallet information:
+{{walletInfo}}
+And using last user message from: {{recentMessages}}. 
+
+Extract the following information about minting NFT token:
+1. **Token Id**:
+   - must be a string. Do not include dot after last character. Example of correct topicId: "0.0.539314".
+
+2. **TokenMetadata**:
+   - Must be a string.
+   - contains metadata that will be assigned to minted token
+
+Always look at the latest message from user and try to extract data from it!
+Respond with a JSON markdown block containing only the extracted values. All fields are required:
+\`\`\`json
+{
+    "tokenId": string,
+    "tokenMetadata": string
+}
+\`\`\`
+
+Example response for the input: "Mint NFT 0.0.5423981 with metadata 'This is the tokens metadata'.", the response should be:
+\`\`\`json
+{
+    "tokenId": "0.0.5423981",
+    "TokenMetadata": "This is the tokens metadata"
+}
+\`\`\`
+
+Example response for the input: "Mint new NFT token. Set it's metadata to 'https://example.com/nft-image.png'", the response should be:
+\`\`\`json
+{
+    "tokenId": "0.0.5423991",
+    "TokenMetadata": "https://example.com/nft-image.png"
 }
 \`\`\`
 
