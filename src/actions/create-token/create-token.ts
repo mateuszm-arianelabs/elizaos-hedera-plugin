@@ -60,7 +60,15 @@ export const createTokenAction: Action = {
             if (callback && response.status === TxStatus.SUCCESS) {
                 const url = generateHashscanUrl(response.txHash, networkType);
                 await callback({
-                    text: `Created new fungible token with id: ${response.tokenId.toString()}\n\nDetails:\n${createFTDetailsDescription(createTokenData)}\n\nTransaction link: ${url}`,
+                    text: [
+                        `Created a new fungible token!`,
+                        `Token ID: ${response.tokenId.toString()}`,
+                        ``,
+                        `Details:`,
+                        `${createFTDetailsDescription(createTokenData)}`,
+                        ``,
+                        `Transaction link: ${url}`
+                    ].join("\n"),
                 });
             }
 
